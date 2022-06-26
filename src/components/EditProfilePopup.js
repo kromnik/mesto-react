@@ -16,10 +16,10 @@ function EditProfilePopup(props) {
         name="name"
         required
         placeholder="Ваше имя"
-        value=""
-        minlength="2"
-        maxlength="40"
-        autocomplete="off"
+        defaultValue=""
+        minLength="2"
+        maxLength="40"
+        autoComplete="off"
       />
       <span className="userName-input-error popup__form-input-error"></span>
       <input
@@ -29,10 +29,10 @@ function EditProfilePopup(props) {
         name="about"
         required
         placeholder="О себе"
-        value=""
-        minlength="2"
-        maxlength="200"
-        autocomplete="off"
+        defaultValue=""
+        minLength="2"
+        maxLength="200"
+        autoComplete="off"
       />
       <span className="userNameInfo-input-error popup__form-input-error"></span>
     </PopupWithForm>

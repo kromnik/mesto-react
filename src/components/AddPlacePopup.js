@@ -16,10 +16,10 @@ function AddPlacePopup(props) {
         name="name"
         required
         placeholder="Название"
-        value=""
-        minlength="2"
-        maxlength="30"
-        autocomplete="off"
+        defaultValue=""
+        minLength="2"
+        maxLength="30"
+        autoComplete="off"
       />
       <span className="cardName-input-error popup__form-input-error"></span>
       <input
@@ -29,8 +29,8 @@ function AddPlacePopup(props) {
         name="link"
         required
         placeholder="Ссылка на картинку"
-        value=""
-        autocomplete="off"
+        defaultValue=""
+        autoComplete="off"
       />
       <span className="cardLink-input-error popup__form-input-error"></span>
     </PopupWithForm>

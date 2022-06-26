@@ -16,8 +16,8 @@ function EditAvatarPopup(props) {
         name="avatar"
         required
         placeholder="Ссылка на аватар"
-        value=""
-        autocomplete="off"
+        defaultValue=""
+        autoComplete="off"
       />
       <span className="avatarLink-input-error popup__form-input-error"></span>
     </PopupWithForm>

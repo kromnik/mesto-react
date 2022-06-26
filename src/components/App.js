@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState } from 'react';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -9,26 +9,21 @@ import ImagePopup from "./ImagePopup";
 
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfileOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({});
-  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
   
-  const handleEditProfileClick = () => { setIsEditProfileOpen(true) };
+  const handleEditProfileClick = () => { setIsEditProfilePopupOpen(true) };
   const handleAddPlaceClick = () => { setIsAddPlacePopupOpen(true) };
   const handleEditAvatarClick = () => { setIsEditAvatarPopupOpen(true) };
-  const handleCardClick = (cardData) => { 
-    setSelectedCard(cardData);
-    setIsImagePopupOpen(true)
-  };
+  const handleCardClick = (cardData) => { setSelectedCard(cardData) };
 
   const closeAllPopups = () => {
-    setIsEditProfileOpen(false);
+    setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(null);
-    setIsImagePopupOpen(false);
   }
 
   return (
@@ -57,7 +52,6 @@ function App() {
         />
         <ImagePopup
           card={selectedCard}
-          isOpen={isImagePopupOpen}
           onClose={closeAllPopups}
         />  
       </div>
