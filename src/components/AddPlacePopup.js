@@ -1,6 +1,31 @@
+import React, { useEffect, useState } from 'react';
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
+  const [cardName, setCardName] = useState('');
+  const [cardLink, setCardLink] = useState('');
+
+  useEffect(() => {
+    setCardName('');
+    setCardLink('');
+  }, [props.isOpen]);
+  
+  function handleCardNameChange(e) {
+    setCardName(e.target.value);
+  }
+
+  function handleCardLinkChange(e) {
+    setCardLink(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onAddPlace({
+      name: cardName,
+      link: cardLink
+    });
+  }
+
   return (
     <PopupWithForm
       name="add-card"
@@ -8,6 +33,7 @@ function AddPlacePopup(props) {
       buttonSubmitText="Создать"
       onClose={props.onClose}
       isOpen={props.isOpen}
+      onSubmit={handleSubmit}
     >
       <input
         id="cardName-input"
@@ -16,10 +42,11 @@ function AddPlacePopup(props) {
         name="name"
         required
         placeholder="Название"
-        defaultValue=""
         minLength="2"
         maxLength="30"
         autoComplete="off"
+        value={ cardName || ''}
+        onChange={handleCardNameChange}
       />
       <span className="cardName-input-error popup__form-input-error"></span>
       <input
@@ -29,8 +56,9 @@ function AddPlacePopup(props) {
         name="link"
         required
         placeholder="Ссылка на картинку"
-        defaultValue=""
         autoComplete="off"
+        value={ cardLink || ''}
+        onChange={handleCardLinkChange}
       />
       <span className="cardLink-input-error popup__form-input-error"></span>
     </PopupWithForm>

@@ -70,21 +70,13 @@ class Api {
     .then(this._checkResponse);
   };
 
-  setLikeCard(id) {
+  changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._url}/cards/likes/${id}`, {
-      method: 'PUT',
+      method: `${isLiked ? 'PUT' : 'DELETE'}`,
       headers: this._headers,
     })
     .then(this._checkResponse);
-  };
-
-  deleteLikeCard(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
-      method: 'DELETE',
-      headers: this._headers,
-    })
-    .then(this._checkResponse);
-  };
+  }
 
   getInitialData() {
     return Promise.all([this.getUserInfoApi(), this.getInitialCards()])

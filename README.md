@@ -13,4 +13,5 @@
 * OOP 
 * API 
 * React JS
+* React Hooks
 * Webpack

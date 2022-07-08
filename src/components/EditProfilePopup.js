@@ -1,6 +1,34 @@
-import PopupWithForm from "./PopupWithForm";
+import React, { useEffect, useState } from 'react';
+import PopupWithForm from './PopupWithForm';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function EditProfilePopup(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+  
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]);
+  
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+  function handleDescriptionChange(e) {
+    setDescription(e.target.value);
+  }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onUpdateUser({
+      name,
+      about: description,
+    });
+  } 
+
   return (
     <PopupWithForm
       name="update-avatar"
@@ -8,6 +36,7 @@ function EditProfilePopup(props) {
       buttonSubmitText="Сохранить"
       onClose={props.onClose}
       isOpen={props.isOpen}
+      onSubmit={handleSubmit}
     >
       <input
         id="userName-input"
@@ -16,10 +45,11 @@ function EditProfilePopup(props) {
         name="name"
         required
         placeholder="Ваше имя"
-        defaultValue=""
         minLength="2"
         maxLength="40"
         autoComplete="off"
+        value={ name || ''}
+        onChange={handleNameChange}
       />
       <span className="userName-input-error popup__form-input-error"></span>
       <input
@@ -29,10 +59,11 @@ function EditProfilePopup(props) {
         name="about"
         required
         placeholder="О себе"
-        defaultValue=""
         minLength="2"
         maxLength="200"
         autoComplete="off"
+        value={ description || ''}
+        onChange={handleDescriptionChange}
       />
       <span className="userNameInfo-input-error popup__form-input-error"></span>
     </PopupWithForm>
