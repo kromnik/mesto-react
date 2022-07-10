@@ -9,7 +9,6 @@ import ImagePopup from './ImagePopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -96,8 +95,6 @@ function App() {
         console.log(err);
       });
   }
-
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
